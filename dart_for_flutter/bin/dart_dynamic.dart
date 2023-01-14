@@ -3,7 +3,7 @@ import 'package:dart_for_flutter/dart_for_flutter.dart' as dart_for_flutter;
 void main(List<String> arguments) {
   print('Hello world');
     String name = '수진';
-  name = 'sj';
+  name = 'sj_test';
   //변수를 선언할 때 var를 사용할 수도 있고
   //넣어줄 데이터의 타입을 사용할 수도 있다.
   //데이터의 타입만 유지시키면 업데이트 가능
