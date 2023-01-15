@@ -1,4 +1,3 @@
-import 'dart:js_util';
 
 void main() {
   //null safety : 개발자가 null값을 참조할 수 없도록 하는 기능
@@ -15,5 +14,6 @@ if(sj != null){
 sj?.isNotEmpty;
 //sj가 낫 널이면 ~ isNotEmpty 속성을 달라 == 위 if 문과 동일
 
+print('not problem');
 
 }
