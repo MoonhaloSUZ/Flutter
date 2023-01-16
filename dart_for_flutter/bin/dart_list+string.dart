@@ -39,7 +39,11 @@ void main() {
   var age = 10;
   var greeting = 'Hello, Im $dalsuz, ${age + 10} nice to meet you';
   print(greeting);
-  //변수가 이미 존재할 때 사용
+  //변수가 이미 존재할 때 사용가능하며
+  //계산 할 때는 중괄호 이용
+
+  //$변수, ${변수+숫자}, '' 사이에 '가 들어가는 경우 \' 처리
+  //
 
 
 
