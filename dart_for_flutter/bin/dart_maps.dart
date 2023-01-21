@@ -1,4 +1,3 @@
-import 'dart:html';
 
 void main() {
   //key와 value로 만들어진 Map
@@ -33,4 +32,17 @@ void main() {
       '44' : true
     }
   ];
+  //이런 식으로 작업도 가능하지만 가능하다만 참고
+
+  var numbers = {1,2,3,4,5};
+  Set<int> numberss = {1,2,3,4,6};
+  //set의 아이템은 모두 유니크함
+  numbers.add(1);
+  numbers.add(2);
+  print(numbers);
+  print(numberss);
+//list랑 같지만 모든 아이템이 유니크함
+//모든 아이템이 유니크해야하면 셋, 아니면 리스트 사용
+//python에서 tuple과 동일
+
 }
