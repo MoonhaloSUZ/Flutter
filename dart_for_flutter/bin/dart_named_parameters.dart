@@ -1,11 +1,9 @@
-String sayHello({String name, int age, String country}){
-  return "Hello $name, you are $age, and you come from $conuntry";
-
+String sayHello({String name = 'sj', int age = 12, String country = 'lg'}) {
+  return "Hello $name, you are $age, and you come from $country";
 }
 
 void main() {
   print(sayHello('sj', 26, 'Korea'));
-
   //named argument를 사용하면
 
   print(sayHello(
@@ -16,5 +14,4 @@ void main() {
   //위 경우 유저가 모든 인자값을 넣지 않을 경우를 대비
   //1. argument에 defalt 값 지정
   //ex. String name = '123', int age = 99, String country = '123'
-
 }
