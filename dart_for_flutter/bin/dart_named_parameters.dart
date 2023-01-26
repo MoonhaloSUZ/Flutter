@@ -1,9 +1,13 @@
-String sayHello({String name = 'sj', int age = 12, String country = 'lg'}) {
+String sayHello({
+  String name = 'sj',
+  int age = 12,
+  String country = 'lg',
+}) {
   return "Hello $name, you are $age, and you come from $country";
 }
 
 void main() {
-  print(sayHello('sj', 26, 'Korea'));
+  //print(sayHello('sj', 26, 'Korea'));
   //named argument를 사용하면
 
   print(sayHello(
