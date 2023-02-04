@@ -1,5 +1,5 @@
-void sayHello(String name){
-  print("Hello $name nice to meet you");
+void sayHello(String jjikkyu){
+  print("Hello $jjikkyu nice to meet you");
   // return 'hello'; -> 에러 발생
 
 }
@@ -7,6 +7,7 @@ void sayHello(String name){
 //string을 return 하고싶으면 void가 아니라 String으로 수정해야 함
 
 //궁금 : 영상 Defining a Function (3 0) 의 1:45초 글자 수정 어떻게 하는지 궁금함
+//같은 변수(?) 다른 위치 한꺼번에 수정하기 -> command + shift + l 
 
 void main() {
   sayHello('sj');
@@ -22,4 +23,5 @@ void main() {
 String sayHi(String hi)=> "Hi $hi";
 
 num plus(num a, num b)=> a + b;
-//왜 출력되지 않지..?
+
+//값만 리턴하기 때문에 출력하려면 print 해야됨
