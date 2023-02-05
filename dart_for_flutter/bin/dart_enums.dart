@@ -1,4 +1,4 @@
-//Enums : 
+//enums : 개발자가 실수하지 않도록 도움
 
 enum Team { red, blue }
 enum Money { little, soso, many }
