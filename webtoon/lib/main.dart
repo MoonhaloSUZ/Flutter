@@ -6,13 +6,12 @@ import 'package:flutter/material.dart';
 class Player {
   String name;
 
-  Player(this.name);
+  Player({required this.name});
 }
 
 void main() {
-  var dal = Player('dal');
-  
-
+  var dal = Player(name: 'dal',
+  );
   runApp(App());
   
 }
