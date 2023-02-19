@@ -25,15 +25,44 @@ class App extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp( //구글 형식의 material app일지 애플 형식의 cupertino app일지 정해야함. 구글에서 만든 언어로 material 이 더 고오급. 사용.
       home: Scaffold( //Home 안에 다른 위젯을 생성
-        appBar: AppBar(
-          centerTitle: false,
-          elevation: 100,
-          title: Text('Hi, Flutter'),
+        backgroundColor: Color(0xFF181818),
+        //Colors.색상.얼마나어두운지 
+        
 
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 18 ),
+          child: Column(
+          children: [
+            SizedBox(
+              height: 80,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  //text 우측 정렬
+                  children: [
+                    Text('dal',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text('suz',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(1),
+                        fontSize: 18,
+                        ),
+                      ),
+                  ],
+                )
+              ],
+            )
+          ],
         ),
-        body: Center(
-          child: Text('Hi, Dal'),
-          ),
+        )
       ),
     );
   }
