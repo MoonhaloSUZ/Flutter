@@ -142,31 +142,70 @@ class App extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF1F2123),
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1F2123),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          const Text(
-                            'Won',
-                            style: TextStyle(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 25, horizontal: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Won',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              children: const [
+                                Text(
+                                  '7,575',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  'won',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Transform.scale(
+                          //아래 Icon()에서 size를 키우면 카드가 함께 커지기 때문에
+                          //Transform.을 사용하여 아이콘만 크기 조절 되도록 만듦
+                          scale: 2.2,
+                          child: Transform.translate(
+                            //아이콘의 x,y 좌표 변경을 위해 translate 사용
+                            offset: const Offset(-4, 8),
+                            child: const Icon(
+                              Icons.euro_rounded,
                               color: Colors.white,
+                              size: 75,
                             ),
                           ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            children: const [
-                              Text('7,575'),
-                              Text('won'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
