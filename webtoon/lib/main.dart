@@ -108,7 +108,67 @@ class App extends StatelessWidget {
                         bgColor: Color(0xff1f2123),
                         textColor: Colors.white),
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  //Row는 main과 cross 축이 있다
+                  //main은 가로축, cross는 세로축을 의미한다.
+                  //column에서는 main이 세로, cross가 가로.
+
+                  children: [
+                    const Text(
+                      'Wallets',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'View All',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF1F2123),
+                  ),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          const Text(
+                            'Won',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            children: const [
+                              Text('7,575'),
+                              Text('won'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           )),
