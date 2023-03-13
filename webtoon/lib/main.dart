@@ -14,6 +14,14 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  bool showTitle = true;
+
+  void toggleTitle() {
+    setState(() {
+      showTitle = !showTitle;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,17 +37,48 @@ class _AppState extends State<App> {
             body: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    MyLargeTitle(),
+                  children: [
+                    showTitle
+                        ? const MyLargeTitle()
+                        : const Text(
+                            'Nothing',
+                          ),
+                    IconButton(onPressed: onPressed, icon: icon)
                   ]),
             )));
   }
 }
 
-class MyLargeTitle extends StatelessWidget {
+class MyLargeTitle extends StatefulWidget {
   const MyLargeTitle({
     super.key,
   });
+
+  @override
+  State<MyLargeTitle> createState() => _MyLargeTitleState();
+}
+
+class _MyLargeTitleState extends State<MyLargeTitle> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+  //대부분의 상황에서 필요하지 않음
+  //종종 부모요소에 의존하는 데이터를 초기화하는 경우 필요(ex. API)
+  //initState는 Build 메서드보다 항상 먼저 호출되어야 함
+  //InitState 메서드는 오직 단 한번만 호출됨.
+  //super.inist
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("dispose!");
+  }
+  //form의 리스너로부터 벗어나고싶을때라든지 등
+  // 무엇인가를 취소하는 것
+  //위젯이 위젯트리에서 제거되기 전에 무언가를 취소하고 싶을 때
 
   @override
   Widget build(BuildContext context) {
