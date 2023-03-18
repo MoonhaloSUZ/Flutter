@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//LifeCycle : initState -> build -> ##위젯이 사라질 땐 dispose가 실행됨
 
 void main() {
   runApp(const App());
@@ -21,6 +22,7 @@ class _AppState extends State<App> {
       showTitle = !showTitle;
     });
   }
+  //showTitle 속성을 반대로 토글
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,9 @@ class _AppState extends State<App> {
                         : const Text(
                             'Nothing',
                           ),
-                    IconButton(onPressed: onPressed, icon: icon)
+                    IconButton(
+                        onPressed: toggleTitle,
+                        icon: const Icon(Icons.remove_red_eye))
                   ]),
             )));
   }
@@ -63,6 +67,8 @@ class _MyLargeTitleState extends State<MyLargeTitle> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print('init');
+    //initState : 상태를 초기화 하기 위한 메서드
   }
   //대부분의 상황에서 필요하지 않음
   //종종 부모요소에 의존하는 데이터를 초기화하는 경우 필요(ex. API)
@@ -82,6 +88,7 @@ class _MyLargeTitleState extends State<MyLargeTitle> {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return Text(
       'My Large Title',
       style: TextStyle(
