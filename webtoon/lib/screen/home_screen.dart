@@ -16,6 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
   //late modifer는 해당 property를 당장 초기화하지 않아도 된다는 뜻
   //단, 반드시 사용하기 전에 초기화해야 함.
 
+  bool isRunning = false;
+
   void onTick(Timer timer) {
     setState(() {
       totalSeconds -= 1;
@@ -25,6 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
   void onStartPressed() {
     timer = Timer.periodic(const Duration(seconds: 1), onTick);
     //onTick() 은 함수를 지금 당장 실행하는 것, 따라서 괄호를 제거하고 작성
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  void onPausePressed() {
+    timer.cancel();
+
+    setState(() {
+      isRunning = false;
+    });
   }
 
   @override
@@ -52,11 +65,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Center(
               child: IconButton(
             //onPressed : 버튼을 눌렀을 때 실행되는 함수
-            onPressed: onStartPressed,
+            onPressed: isRunning ? onPausePressed : onStartPressed,
             iconSize: 123,
             color: Theme.of(context).cardColor,
-            icon: const Icon(
-              Icons.play_circle_outline,
+            icon: Icon(
+              isRunning
+                  ? Icons.pause_circle_outline
+                  : Icons.play_circle_outline,
             ),
           )),
         ),
