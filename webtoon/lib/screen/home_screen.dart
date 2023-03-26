@@ -52,6 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void resetTimer() {
+    timer.cancel();
+
+    setState(() {
+      isRunning = false;
+      totalSeconds = tF;
+    });
+  }
+
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
     print(duration.toString().split(".").first.substring(2, 6));
@@ -59,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //duration(변수)를 스트링으로 바꾼 뒤 split "."기준으로 실행 -> 0:25:00 과 000000 가 분리되어 list에 저장됨
     //-> .first를 해서 첫번째 아이템만 가져옴
     //substring(start, end) -> start 부터 end 까지 해당하는 인덱스 스트링 컷팅
-    //인덱스는 2~6 이지만 마지막 인덱스 +1 해서 커트해야
+    //인덱스는 2~6 이지만 마지막 인덱스 +1 해서 커트해야 마지막 인덱스까지 표시 됨
 
     return duration.toString().split(".").first.substring(2, 7);
   }
@@ -87,17 +96,39 @@ class _HomeScreenState extends State<HomeScreen> {
         Flexible(
           flex: 1,
           child: Center(
-              child: IconButton(
-            //onPressed : 버튼을 눌렀을 때 실행되는 함수
-            onPressed: isRunning ? onPausePressed : onStartPressed,
-            iconSize: 123,
-            color: Theme.of(context).cardColor,
-            icon: Icon(
-              isRunning
-                  ? Icons.pause_circle_outline
-                  : Icons.play_circle_outline,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  //onPressed : 버튼을 눌렀을 때 실행되는 함수
+                  onPressed: isRunning ? onPausePressed : onStartPressed,
+                  iconSize: 123,
+                  color: Theme.of(context).cardColor,
+                  icon: Icon(
+                    isRunning
+                        ? Icons.pause_circle_outline
+                        : Icons.play_circle_outline,
+                  ),
+                ),
+                OutlinedButton(
+                  onPressed: resetTimer,
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(
+                      color: Theme.of(context).cardColor,
+                      width: 2,
+                    ),
+                  ),
+                  child: Text(
+                    'reset',
+                    style: TextStyle(
+                      fontSize: 23,
+                      color: Theme.of(context).cardColor,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          )),
+          ),
         ),
         Flexible(
           flex: 1,
