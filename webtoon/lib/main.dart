@@ -1,13 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:webtoon/service/api_service.dart';
 import 'package:webtoon/webtoon_screen/home_screen.dart';
 
 //LifeCycle : initState -> build -> ##위젯이 사라질 땐 dispose가 실행됨
 
 void main() {
-  runApp(const App());
+  HttpOverrides.global = MyHttpOverrides();
 
-  ApiService().getTodaysToons();
+  runApp(const App());
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..userAgent =
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36';
+  }
 }
 
 class App extends StatelessWidget {
@@ -18,7 +28,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: HomeScreen(),
     );
   }
