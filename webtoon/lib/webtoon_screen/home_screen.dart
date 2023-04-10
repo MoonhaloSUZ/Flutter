@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webtoon/model/webtoon_model.dart';
 import 'package:webtoon/service/api_service.dart';
+import 'package:webtoon/widgets/webtoon_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -60,34 +61,10 @@ class HomeScreen extends StatelessWidget {
         //itemBuilder : ListView의 Item을 만드는 역할
         print(index);
         var webtoon = snapshot.data![index];
-        return Column(
-          children: [
-            Container(
-              width: 300,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 5,
-                    offset: const Offset(10, 10),
-                    color: Colors.black.withOpacity(0.3),
-                  )
-                ],
-              ),
-              child: Image.network(webtoon.thumb),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              webtoon.title,
-              style: const TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
+        return Webtoon(
+          title: webtoon.title,
+          thumb: webtoon.thumb,
+          id: webtoon.id,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(width: 40),
