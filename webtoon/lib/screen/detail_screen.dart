@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webtoon/model/webtoon_detail_model.dart';
 import 'package:webtoon/model/webtoon_episode_model.dart';
 import 'package:webtoon/service/api_service.dart';
@@ -21,17 +22,50 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
+  late SharedPreferences prefs;
+  bool isLiked = false;
+
+  //핸드폰 저장소와 연결하는 법
+  Future initPref() async {
+    prefs = await SharedPreferences.getInstance();
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (likedToons.contains(widget.id) == true) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    } else {
+      await prefs.setStringList('likedToons', []);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     webtoon = ApiService.getToonById(widget.id);
     episodes = ApiService.getLatestEpisodesById(widget.id);
+    initPref();
   }
 
   //State의 build method가 State가 속한 StatefulWidget의 data를 받아오는 방법
   // : widget.title (widget == 부모한테 가라는 뜻)
   //StatelessWidget이면 위에서 선언한 변수명 그대로 사용 가능, StatefulWidget이면 widget.변수 로 리팩토링해야함
+
+  onHeartTap() async {
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (isLiked) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+      await prefs.setStringList('likedToons', likedToons);
+      setState(() {
+        isLiked = !isLiked;
+      });
+    } else {}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +80,13 @@ class _DetailScreenState extends State<DetailScreen> {
             fontWeight: FontWeight.w500,
           ),
         ),
+        actions: [
+          IconButton(
+              onPressed: onHeartTap,
+              icon: Icon(
+                isLiked ? Icons.favorite : Icons.favorite_outline_rounded,
+              ))
+        ],
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
